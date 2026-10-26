@@ -5,6 +5,7 @@ import { connectDB } from "./config/db.js";
 import authRouter from "./routes/auth.js";
 import dishesRouter from "./routes/dishes.js";
 import ordersRouter from "./routes/orders.js";
+import reviewsRouter from "./routes/reviews.js";
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -12,6 +13,7 @@ const PORT = process.env.PORT || 3000;
 // מאפשר לצד הלקוח לפנות לשרת
 app.use(cors({ origin: process.env.CLIENT_URL || "http://localhost:5173" }));
 app.use(express.json());
+app.use("/api/reviews", reviewsRouter);
 
 app.get("/", (req, res) => res.json({ message: "שרת הקייטרינג פועל" }));
 app.use("/api/auth", authRouter);
